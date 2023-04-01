@@ -13,4 +13,7 @@ public:
 
 private:
     Ui::MainApplicationClass ui;
+
+private slots:
+    void on_actionConnect_triggered();
 };
