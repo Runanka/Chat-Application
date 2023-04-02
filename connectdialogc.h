@@ -18,4 +18,8 @@ public:
 
 private:
 	Ui::ConnectDialogClass *ui_dialog;
+
+private slots:
+	void connectPressed();
+
 };
