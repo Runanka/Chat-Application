@@ -22,4 +22,8 @@ private:
 private slots:
 	void connectPressed();
 
+signals:
+	void implementServer(const QString,const quint16);
+	void implementClient(const QString,const quint16);
+
 };

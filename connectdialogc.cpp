@@ -1,5 +1,6 @@
 #include "connectdialogc.h"
 #include "ui_connectdialog.h"
+#include "MainApplication.h"
 
 #include <QDialog>
 #include <QString>
@@ -24,7 +25,7 @@ ConnectDialogClass::ConnectDialogClass(QWidget* parent):
 
     // Set the port validator
     QLineEdit* portLine = ui_dialog->portLineEdit;
-    QString portRegex = "^([1-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$";
+    QString portRegex = "^[0-9]{5}$";
     QRegExpValidator* portValidator = new QRegExpValidator(QRegExp(portRegex), this);
     portLine->setValidator(portValidator);
     portLine->setCursorPosition(0);
@@ -37,6 +38,8 @@ ConnectDialogClass::ConnectDialogClass(QWidget* parent):
 
     // Connect the connect button to the connectPressed slot
     connect(ui_dialog->connectButton, &QPushButton::clicked, this, &ConnectDialogClass::connectPressed);
+
+
 }
 
 ConnectDialogClass::~ConnectDialogClass()
@@ -46,5 +49,30 @@ ConnectDialogClass::~ConnectDialogClass()
 
 
 void ConnectDialogClass::connectPressed() {
-    qDebug() << "Connect button pressed";
+
+    quint16 portAddress = ui_dialog->portLineEdit->text().toUInt();
+
+    QString ipAddress = ui_dialog->ipLineEdit->text();
+    QRegularExpression regex("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4})$");
+    QRegularExpressionMatch matchip = regex.match(ipAddress);
+
+    bool isServer = ui_dialog->serverRadioButton->isChecked();
+
+
+    if (matchip.hasMatch() && portAddress <= 65535 && portAddress >= 49152) {
+        qDebug() << "String matches regex pattern";
+        
+        (isServer) ? emit implementServer(ipAddress, portAddress) :emit implementClient(ipAddress, portAddress);
+        close();
+        
+    }
+    else if(!matchip.hasMatch()){
+        qDebug() << "String does not match ip regex pattern";
+    }
+    else if (portAddress > 65535 || portAddress < 49152) {
+		qDebug() << "String does not match port regex pattern";
+	}
+
+
+    qDebug() << "Connect button pressed" << ipAddress << portAddress;
 }
