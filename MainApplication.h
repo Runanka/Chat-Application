@@ -16,6 +16,9 @@ public:
 private:
     Ui::MainApplicationClass ui;
     ConnectDialogClass *connect_dialog;
+    QVBoxLayout* mainlayout;
+    QWidget* textwidget;
+    enum textAlign { left = 0, right = 1 };
 
 
 private slots:
@@ -24,4 +27,7 @@ private slots:
 public slots:
     void client(QString, quint16);
     void server(QString, quint16);
+
+protected:
+    void textUI(QString, textAlign);
 };

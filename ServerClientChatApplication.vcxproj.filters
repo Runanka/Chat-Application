@@ -43,6 +43,9 @@
     <ClCompile Include="connectdialogc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mymessage.cpp">
+      <Filter>Form Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ConnectDialog.ui">
@@ -52,6 +55,9 @@
   <ItemGroup>
     <QtMoc Include="connectdialogc.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mymessage.h">
+      <Filter>Form Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

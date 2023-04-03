@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mymessage.cpp" />
     <QtRcc Include="MainApplication.qrc" />
     <QtUic Include="ConnectDialog.ui" />
     <QtUic Include="MainApplication.ui" />
@@ -93,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="connectdialogc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="mymessage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
