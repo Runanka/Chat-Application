@@ -9,15 +9,10 @@ MyMessage::MyMessage(const QString& message, QWidget* parent)
 
 	setReadOnly(true);
 	setText(message);
+
+	// Sets the width of QTextEdit to 50 characters or the width of the message, whichever is greater
+	// Sets the height of QTextEdit to the number of lines of text in the message
 	QFontMetrics metrics(font());
-	//QRect textRect = metrics.boundingRect(QRect(0, 0, 400, 400), Qt::TextWordWrap, message);
-	//setFixedSize(textRect.size());
-
-
-	//QSize textSize = metrics.size(Qt::TextWordWrap, message);
-	//setFixedWidth(textSize.width() + 10);
-	//setFixedHeight(textSize.height() + 10);
-	
 	setFixedWidth(50*metrics.averageCharWidth() < metrics.horizontalAdvance(message) + 10 ? 50 * metrics.averageCharWidth() : metrics.horizontalAdvance(message) + 10);
 	setFixedHeight((metrics.height()*message.length())/50 + metrics.height() + 10);
 

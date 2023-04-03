@@ -6,7 +6,7 @@
 #include <QString>
 #include <QRegExpValidator>
 #include <QPushButton>
-#include <QDebug>
+#include <QMessageBox>
 
 ConnectDialogClass::ConnectDialogClass(QWidget* parent): 
 	QDialog(parent),
@@ -50,29 +50,25 @@ ConnectDialogClass::~ConnectDialogClass()
 
 void ConnectDialogClass::connectPressed() {
 
-    quint16 portAddress = ui_dialog->portLineEdit->text().toUInt();
+    // Check if the server or client radio button is checked
+    bool isServer = ui_dialog->serverRadioButton->isChecked();
 
+    // Get the IP address and port number from the dialog
+    quint16 portAddress = ui_dialog->portLineEdit->text().toUInt();
     QString ipAddress = ui_dialog->ipLineEdit->text();
+
+    // Check if the IP address and port number are valid
     QRegularExpression regex("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4})$");
     QRegularExpressionMatch matchip = regex.match(ipAddress);
 
-    bool isServer = ui_dialog->serverRadioButton->isChecked();
-
-
     if (matchip.hasMatch() && portAddress <= 65535 && portAddress >= 49152) {
-        qDebug() << "String matches regex pattern";
-        
         (isServer) ? emit implementServer(ipAddress, portAddress) :emit implementClient(ipAddress, portAddress);
         close();
-        
     }
     else if(!matchip.hasMatch()){
-        qDebug() << "String does not match ip regex pattern";
+        QMessageBox::information(this, "Invalid IP address", "The IP address entered is in the wrong format. Please enter a valid IP address.");
     }
     else if (portAddress > 65535 || portAddress < 49152) {
-		qDebug() << "String does not match port regex pattern";
+        QMessageBox::information(this, "Invalid Port number", "The port address entered is wrong. Please enter a port number between 49152 & 65535");
 	}
-
-
-    qDebug() << "Connect button pressed" << ipAddress << portAddress;
 }

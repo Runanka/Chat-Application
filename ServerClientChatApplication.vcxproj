@@ -32,7 +32,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.12.12_msvc2017_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;network</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -83,7 +83,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clientclass.cpp" />
     <ClCompile Include="mymessage.cpp" />
+    <ClCompile Include="serverclass.cpp" />
     <QtRcc Include="MainApplication.qrc" />
     <QtUic Include="ConnectDialog.ui" />
     <QtUic Include="MainApplication.ui" />
@@ -97,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mymessage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="clientclass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="serverclass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

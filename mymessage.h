@@ -2,6 +2,7 @@
 
 #include <QTextEdit>
 
+// This is a custom QTextEdit widget
 class MyMessage : public QTextEdit
 {
     Q_OBJECT

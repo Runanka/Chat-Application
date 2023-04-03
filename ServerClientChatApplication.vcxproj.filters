@@ -46,6 +46,12 @@
     <ClCompile Include="mymessage.cpp">
       <Filter>Form Files</Filter>
     </ClCompile>
+    <ClCompile Include="clientclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="serverclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ConnectDialog.ui">
@@ -58,6 +64,12 @@
     </QtMoc>
     <QtMoc Include="mymessage.h">
       <Filter>Form Files</Filter>
+    </QtMoc>
+    <QtMoc Include="clientclass.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="serverclass.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

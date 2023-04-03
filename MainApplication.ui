@@ -77,7 +77,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="sentText">
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
         </property>

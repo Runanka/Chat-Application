@@ -20,10 +20,10 @@ private:
 	Ui::ConnectDialogClass *ui_dialog;
 
 private slots:
-	void connectPressed();
+	void connectPressed();										// Slot that is called when the connect button is pressed
 
 signals:
-	void implementServer(const QString,const quint16);
-	void implementClient(const QString,const quint16);
+	void implementServer(const QString,const quint16);			// Signal that a server has to be implemented
+	void implementClient(const QString,const quint16);			// Signal that a client has to be implemented
 
 };
